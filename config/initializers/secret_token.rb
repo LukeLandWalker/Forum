@@ -1,0 +1,1 @@
+Forum::Application.config.secret_key_base = 'eeff0296c0c43a67845b308c43b240f8d4578b5902de87e6cdb9b007d81aebce067996c6fde2e18b262b7015ca8d7dc1f5aec8f57ea1cca73963e809aaf3408'
