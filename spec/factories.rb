@@ -4,5 +4,6 @@ FactoryGirl.define do
     email     "wangyifu@nibirutech.com"
     password  "foobar"
     password_confirmation "foobar"
+    remember_token "123"
   end
 end
