@@ -1,9 +1,15 @@
 FactoryGirl.define do
   factory :user do
-    name      "wangyifu"
-    email     "wangyifu@nibirutech.com"
-    password  "foobar"
+    name  "wangyifu"
+    email "wangyifu@nibirutech.com"
+    password "foobar"
     password_confirmation "foobar"
-    remember_token "123"
+  end
+  
+  factory :post do
+    name "Example post"
+    content "This is an example post"
+    types "topic"
+    user
   end
 end

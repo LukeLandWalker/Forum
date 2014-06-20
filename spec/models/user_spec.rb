@@ -103,5 +103,20 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
+  
+  describe "post associations" do
+    
+    before { @user.save }
+    let!(:older_post) do
+      FactoryGirl.create(:post, user: @user, reply_at: 1.day.ago)
+    end
+    let!(:newer_post) do
+      FactoryGirl.create(:post, user: @user, reply_at: 1.hour.ago)
+    end
+    
+    it "should have the right posts in the right order" do
+      expect(@user.posts.to_a).to eq [newer_post, older_post]
+    end
+  end
 end
 

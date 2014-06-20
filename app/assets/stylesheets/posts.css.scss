@@ -1,3 +1,60 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+.posts {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  } 
+}
+
+.delete {
+  text-align: right;
+  text-align: bottom;
+  margin-bottom: 1px;
+  margin-right: 1px;
+}
+
+.show_visit
+{
+  text-align: right;
+}
+
+.post_name
+{
+  text-align: left;
+}
+
+.row-fluid {
+  border: 1px solid #bbb;
+}
+
+.table_name .table_author .table_views .table_time{
+  text-align: right;
+}
+
+.table_name {
+  width: 400px; 
+}
+
+.table_author {
+  width: 100px;
+}
+
+.table_views {
+  width: 100px
+}
+
+.talbe_time {
+}
+
+.table_content {
+}
+

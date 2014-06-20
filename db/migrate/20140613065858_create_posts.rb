@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :user_id
       t.string :types
       t.string :content
-
+      
       t.timestamps
     end
   end

@@ -1,33 +1,41 @@
-<h1>Listing posts</h1>
-
-<table>
-  <thead>
+<h1>All Posts</h1>
+<%= link_to 'New Post', new_post_path %>
+<%= will_paginate %>
+<ul class="posts">
+  <table class="post_table">
+    <thead>
     <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th>Types</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th class="table_name">post</th>
+      <th class="table_author">author</th>
+      <th class="table_views">views/replies</th>
+      <th class="table_time">post date</th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.name %></td>
-        <td><%= post.user_id %></td>
-        <td><%= post.types %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+  <% @posts.each do |post| %>
+    <tbody>
+    <tr>
+      <th class="table_name"><%= link_to post.name, post_path(post) %></th>
+      <th class="table_author"><%= post.user.name %></th>
+      <th class="table_views">
+      <% if post.view_count.nil? %>
+        0
+      <% else %>
+        <%= post.view_count %>
+      <% end %>
+        /
+      <%= post.replies.count %>
+      </th>
+      <th class="table_time"><%= time_ago_in_words(post.created_at) %> ago</th>
+    </tr>
+    </li>
+    <tr>
+      <th class="table_content"><%= (truncate(strip_tags(post.content), :length => 20, :omission => '...')).html_safe %>
+      </th>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+</ul>
 <br>
-
+<%= will_paginate %>
 <%= link_to 'New Post', new_post_path %>

@@ -1,6 +1,44 @@
-<h1>Editing post</h1>
+<% provide(:title, @post.name) %>
 
-<%= render 'form' %>
+<%= will_paginate @replies %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<div class="container-fluid">
+  <% if @replies.any? %>
+    <% @replies.each do |reply| %> 
+      <div class="row-fluid">
+        <div class="span3">
+          <p><%= gravatar_for reply.user %></p>
+          <p><%= reply.user.name %></p>
+          <p><%= reply.user.email %><p>
+        </div>
+        <div class="span9">
+          <p class="bg-info">
+            <%= reply.content %>
+            <p class="delete">
+            <% if !current_user.nil? %>
+            <% if current_user.id = reply.user.id %>
+              <%= link_to "delete", reply, method: :delete, data: { confirm: 'Are you sure?'} %>
+            <% end %>
+            <% end %>
+            </p>
+          </p>
+        </div>
+      </div>
+   <% end %>
+ <% end %>
+</div>
+
+<%= will_paginate @replies %>
+
+<div ></div>
+<div class="row">
+  <div class="span8 offset2">
+    <%= form_for @reply do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+      <%= f.text_area :content, rows: 5, placeholder: "Compose new reply..." %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.submit "Post Reply", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
