@@ -23,9 +23,9 @@
         <%= post.view_count %>
       <% end %>
         /
-      <%= post.replies.count %>
+      <%= post.replies.size %>
       </th>
-      <th class="table_time"><%= time_ago_in_words(post.created_at) %> ago</th>
+      <th class="table_time"><%= post.created_at.localtime.strftime('%b %d %H:%M') %></th>
     </tr>
     </li>
     <tr>
@@ -36,6 +36,6 @@
     </tbody>
   </table>
 </ul>
-<br>
 <%= will_paginate %>
+<br>
 <%= link_to 'New Post', new_post_path %>

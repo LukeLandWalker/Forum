@@ -18,9 +18,9 @@ class Post < ActiveRecord::Base
     
   def self.search(search)
     if search
-      self.where("name like ?", "%#{search}%")
+      self.where("name like ?", "%#{search}%").includes(:user)
     else
-      self.all
+      self.all.includes(:user)
     end
   end
 end
